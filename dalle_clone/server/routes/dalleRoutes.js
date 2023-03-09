@@ -2,14 +2,12 @@ import express from "express";
 import * as dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 
-import Post from "../mongodb/models/post.js";
-
 dotenv.config();
 
 const router = express.Router();
 
 const configuration = new Configuration({
-  apikey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -36,4 +34,5 @@ router.route("/").post(async (req, res) => {
     res.status(500).send(error?.response.data.error.message);
   }
 });
+
 export default router;
